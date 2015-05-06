@@ -24,9 +24,8 @@ public class MapGenerator {
 	}
 
 	private void generateOuterwalls(){
-		map[0][0] = '+';
 		map[width-1][heigth-1] = '+';
-		for(int i = 1; i < width-1; i++){
+		for(int i = 0; i < width-1; i++){
 			map[i][0] = '+';
 			map[i][heigth-1] = '+';
 		}
@@ -45,7 +44,6 @@ public class MapGenerator {
 			for(int j = 0; j < width; j++){
 				line += map[j][i];
 			}
-			System.out.println(line);
 			mapSaver.addLine(line);
 		}
 		mapSaver.closeMap();

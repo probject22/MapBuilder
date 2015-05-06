@@ -23,12 +23,13 @@ public class MapSaver {
 	public void addLine(String line){
 		if (!fileSizeSet){
 			System.err.println("the mapsize is not set");
-			return;
+			//return;
 		}
 		if (line.length() != width){
 			System.err.println("the length of the line is not correct");
-			return;
+			//return;
 		}
+		System.out.println(line);
 		writer.println(line);
 		lineCounter++;
 	}
@@ -37,6 +38,8 @@ public class MapSaver {
 		if (lineCounter != height){
 			System.err.println("the mapfile is corrupted");
 		}
+		writer.flush();
+		writer.close();
 	}
 	
 	/**

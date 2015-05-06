@@ -10,13 +10,13 @@ public class RandomMapGenerator extends MapGenerator{
 	
 	protected void generateMap() {
 		super.generateMap();
-		amountOfWalls = 35;
+		amountOfWalls = 100;
 		
 		double count = 0;
 		while( count < amountOfWalls){
 			int x = (int) (Math.random()*width);
 			int y = (int) (Math.random()*heigth);
-			int lengthWall = (int) (Math.random()*20);
+			int lengthWall = (int) (Math.random()*50);
 			double rotation = Math.random();
 			
 			//door on this wall?
