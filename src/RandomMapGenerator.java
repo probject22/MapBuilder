@@ -3,8 +3,8 @@ public class RandomMapGenerator extends MapGenerator{
 
 	private int amountOfWalls;
 	
-	public RandomMapGenerator(int width, int heigth, int amountOfAgents){
-		super(width, heigth, amountOfAgents);
+	public RandomMapGenerator(int width, int heigth){
+		super(width, heigth);
 		
 	}
 	
@@ -59,15 +59,6 @@ public class RandomMapGenerator extends MapGenerator{
 			
 		}
 		
-		count = 0;
-		while( count < amountOfAgents){
-			int x = (int) (Math.random()*width);
-			int y = (int) (Math.random()*heigth);
-			if(map[x][y] == ' '){
-				//AGENTS
-				count ++;
-			}
-		}
 	}
 	
 }

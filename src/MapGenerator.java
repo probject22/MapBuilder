@@ -5,12 +5,9 @@ public class MapGenerator {
 	protected char[][] map;
 	protected int width;
 	protected int heigth;
-	protected int amountOfAgents;
-
-	public MapGenerator(int width, int heigth, int amountOfAgents){
+	public MapGenerator(int width, int heigth){
 		this.width = width;
 		this.heigth = heigth;
-		this.amountOfAgents = amountOfAgents;
 		map = new char[width][heigth];
 		for(int i =0;i<width;i++){
 			for(int j =0; j<heigth;j++){
@@ -29,11 +26,11 @@ public class MapGenerator {
 	private void generateOuterwalls(){
 		map[0][0] = '+';
 		map[width-1][heigth-1] = '+';
-		for(int i = 1; i < width-2; i++){
+		for(int i = 1; i < width-1; i++){
 			map[i][0] = '+';
 			map[i][heigth-1] = '+';
 		}
-		for(int i = 0; i<heigth-2;i++){
+		for(int i = 0; i<heigth-1;i++){
 			map[0][i] = '+';
 			map[width-1][i] = '+';
 		}
