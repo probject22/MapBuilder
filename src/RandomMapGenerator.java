@@ -1,40 +1,75 @@
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 
-public class RandomMapGenerator {
-	private MapSaver mapSaver = null;
-	private char[][] map;
-	private int width;
-	private int heigth;
-	private int amountOfAgents;
+public class RandomMapGenerator extends MapGenerator{
 
-	public RandomMapGenerator(int width, int heigth, int amountOfAgents) {
-		this.width = width;
-		this.heigth = heigth;
-		this.amountOfAgents = amountOfAgents;
+	private int amountOfWalls;
+	
+	public RandomMapGenerator(int width, int heigth, int amountOfAgents){
+		super(width, heigth, amountOfAgents);
 		
-		generateMap();
-		save();
 	}
 	
-	private void generateMap(){
-		for(int i = 0; i < width; i++){
+	protected void generateMap() {
+		super.generateMap();
+		amountOfWalls = 35;
+		
+		double count = 0;
+		while( count < amountOfWalls){
+			System.out.println("count="+count);
+			int x = (int) (Math.random()*width);
+			int y = (int) (Math.random()*heigth);
+			int lengthWall = (int) (Math.random()*20);
+			double rotation = Math.random();
+			
+			//door on this wall?
+			double door = Math.random();
+			boolean booleanDoor = false;
+			if(door<0.25){
+				booleanDoor = true;
+			}
+			int placeDoor = 0;
+			if(booleanDoor == true){
+				placeDoor = (int) Math.random()*(lengthWall-1)+1;
+			}
+			
+			if(map[x][y] == ' '){
+				map[x][y] = '-';
+				count ++;
+			}
+			for(int i = 1; i < lengthWall; i++){
+				if(rotation<0.5){
+					if(x+i<width&&map[x+i][y]== ' '){
+						if(placeDoor == i){
+							map[x+i][y] = 'D';
+						}
+						else{
+							map[x+i][y] = '-';
+						}
+					}
+				}
+				else{
+					if(y+i<heigth&&map[x][y+i]== ' '){
+						if(placeDoor == i){
+							map[x][y+i] = 'D';
+						}
+						else{
+							map[x][y+i] = '-';
+						}
+					}		
+				}
+			}
 			
 		}
-	}
-	
-	private void save(){
 		
-		mapSaver = new MapSaver("test.map");
-		mapSaver.setSize(width, heigth);
-		for(int i = 0; i<map[0].length; i++){
-			//TODO add line
-			mapSaver.addLine(line);
+		count = 0;
+		while( count < amountOfAgents){
+			System.out.println("count2="+count);
+			int x = (int) (Math.random()*width);
+			int y = (int) (Math.random()*heigth);
+			if(map[x][y] == ' '){
+				//AGENTS
+				count ++;
+			}
 		}
-		mapSaver.closeMap();
 	}
-	
-
 	
 }

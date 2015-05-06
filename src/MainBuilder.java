@@ -4,13 +4,14 @@ import java.io.UnsupportedEncodingException;
 
 public class MainBuilder {
 	
-	private int height = 200;
-	private int width = 200;
-	private int amountOfAgents = 10;
+	private static int height = 200;
+	private static int width = 200;
+	private static int amountOfAgents = 10;
 
 	public static void main (String[] args){
 		
-		RandomMapGenerator();
+		//MapGenerator mapGen = new MapGenerator(width, height, amountOfAgents);
+		RandomMapGenerator mapGen =  new RandomMapGenerator(width, height, amountOfAgents);
 		
 	}
 	

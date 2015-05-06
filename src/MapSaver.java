@@ -6,7 +6,7 @@ import java.io.UnsupportedEncodingException;
 public class MapSaver {
 	PrintWriter writer = null;
 	boolean fileSizeSet = false;
-	int widht, height = 0;
+	int width, height = 0;
 	int lineCounter = 0;
 	public MapSaver(String filePath){
 		newFile(filePath);
@@ -15,7 +15,7 @@ public class MapSaver {
 	public void setSize(int width, int heigth){
 		writer.println(heigth);
 		writer.println(width);
-		this.widht = width;
+		this.width = width;
 		this.height = heigth;
 		fileSizeSet = true;
 	}
@@ -25,14 +25,16 @@ public class MapSaver {
 			System.err.println("the mapsize is not set");
 			return;
 		}
-		if (line.length() != widht){
+		if (line.length() != width){
 			System.err.println("the length of the line is not correct");
 			return;
 		}
 		writer.println(line);
+		lineCounter++;
 	}
 	public void closeMap(){
 		if (lineCounter != height){
+			System.out.println("linecounter="+lineCounter);
 			System.err.println("the mapfile is corrupted");
 		}
 	}
