@@ -21,6 +21,21 @@ public class MapGenerator {
 	
 	protected void generateMap() {
 		generateOuterwalls();
+		generateTarget();
+	}
+
+	protected void generateTarget() {
+		boolean target=false;
+		while(!target){
+			int x =(int) (Math.random()*width);
+			int y =(int) (Math.random()*heigth);
+			if(map[x][y]==' '){
+				map[x][y] = 'T';
+				target = true;
+			}
+			
+		}
+		
 	}
 
 	private void generateOuterwalls(){

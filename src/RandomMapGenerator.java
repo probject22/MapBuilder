@@ -27,7 +27,7 @@ public class RandomMapGenerator extends MapGenerator{
 			}
 			int placeDoor = 0;
 			if(booleanDoor == true){
-				placeDoor = (int) Math.random()*(lengthWall-1)+1;
+				placeDoor = (int) (Math.random()*(lengthWall-1)+1);
 			}
 			
 			if(map[x][y] == ' '){
