@@ -14,7 +14,6 @@ public class RandomMapGenerator extends MapGenerator{
 		
 		double count = 0;
 		while( count < amountOfWalls){
-			System.out.println("count="+count);
 			int x = (int) (Math.random()*width);
 			int y = (int) (Math.random()*heigth);
 			int lengthWall = (int) (Math.random()*20);
@@ -62,7 +61,6 @@ public class RandomMapGenerator extends MapGenerator{
 		
 		count = 0;
 		while( count < amountOfAgents){
-			System.out.println("count2="+count);
 			int x = (int) (Math.random()*width);
 			int y = (int) (Math.random()*heigth);
 			if(map[x][y] == ' '){

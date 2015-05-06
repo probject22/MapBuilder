@@ -33,8 +33,8 @@ public class MapSaver {
 		lineCounter++;
 	}
 	public void closeMap(){
+		System.out.println("linecounter="+lineCounter);
 		if (lineCounter != height){
-			System.out.println("linecounter="+lineCounter);
 			System.err.println("the mapfile is corrupted");
 		}
 	}
