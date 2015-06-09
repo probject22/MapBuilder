@@ -10,7 +10,7 @@ public class RandomMapGenerator extends MapGenerator{
 	
 	protected void generateMap() {
 		super.generateMap();
-		amountOfWalls = 100;
+		amountOfWalls = 75;
 		
 		double count = 0;
 		while( count < amountOfWalls){
