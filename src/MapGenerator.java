@@ -4,31 +4,31 @@ public class MapGenerator {
 	private MapSaver mapSaver = null;
 	protected char[][] map;
 	protected int width;
-	protected int heigth;
-	public MapGenerator(int width, int heigth){
+	protected int height;
+	
+	public MapGenerator(int width, int height){
 		this.width = width;
-		this.heigth = heigth;
-		map = new char[width][heigth];
+		this.height = height;
+		map = new char[width][height];
 		for(int i =0;i<width;i++){
-			for(int j =0; j<heigth;j++){
+			for(int j =0; j<height;j++){
 				map[i][j]= ' ';
 			}
 		}
-		
 		generateMap();
+		generateTarget();
 		save();
 	}
-	
+
 	protected void generateMap() {
 		generateOuterwalls();
-		generateTarget();
 	}
 
 	protected void generateTarget() {
 		boolean target=false;
 		while(!target){
 			int x =(int) (Math.random()*width);
-			int y =(int) (Math.random()*heigth);
+			int y =(int) (Math.random()*height);
 			if(map[x][y]==' '){
 				map[x][y] = 'T';
 				target = true;
@@ -39,12 +39,12 @@ public class MapGenerator {
 	}
 
 	private void generateOuterwalls(){
-		map[width-1][heigth-1] = '+';
+		map[width-1][height-1] = '+';
 		for(int i = 0; i < width-1; i++){
 			map[i][0] = '+';
-			map[i][heigth-1] = '+';
+			map[i][height-1] = '+';
 		}
-		for(int i = 0; i<heigth-1;i++){
+		for(int i = 0; i<height-1;i++){
 			map[0][i] = '+';
 			map[width-1][i] = '+';
 		}
@@ -53,7 +53,7 @@ public class MapGenerator {
 	private void save(){
 		
 		mapSaver = new MapSaver("test.map");
-		mapSaver.setSize(width, heigth);
+		mapSaver.setSize(width, height);
 		for(int i = 0; i<map[0].length; i++){
 			String line = "";
 			for(int j = 0; j < width; j++){
