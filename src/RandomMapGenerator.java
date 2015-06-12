@@ -14,7 +14,7 @@ public class RandomMapGenerator extends MapGenerator{
 		double count = 0;
 		while( count < amountOfWalls){
 			int x = (int) (Math.random()*width);
-			int y = (int) (Math.random()*heigth);
+			int y = (int) (Math.random()*height);
 			int lengthWall = (int) (Math.random()*50);
 			double rotation = Math.random();
 			
@@ -45,7 +45,7 @@ public class RandomMapGenerator extends MapGenerator{
 					}
 				}
 				else{
-					if(y+i<heigth&&map[x][y+i]== ' '){
+					if(y+i<height&&map[x][y+i]== ' '){
 						if(placeDoor == i){
 							map[x][y+i] = 'D';
 						}

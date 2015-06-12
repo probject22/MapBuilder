@@ -1,24 +1,26 @@
-public class SplitRoomGenerator extends MapGenerator {
 
-	final private int splits = 10;
+public class RandomSplitRoomGenerator extends MapGenerator{
 
-	public SplitRoomGenerator(int width, int height) {
+	private final int splits = 10;
+	
+	public RandomSplitRoomGenerator(int width, int height) {
 		super(width, height);
 	}
-
-	protected void generateMap() {
+	
+	protected void generateMap(){
 		super.generateMap();
-		if (isEven(splits)) {
-			splitEven(1, width - 1, 1, height - 1, splits);
+		if (Math.random()<0.5) {
+			splitOne(1, width - 1, 1, height - 1, splits);
 		} else {
-			splitOdd(1, width - 1, 1, height - 1, splits);
+			splitTwo(1, width - 1, 1, height - 1, splits);
 		}
 	}
 
-	private void splitOdd(int startX, int endX, int startY, int endY, int splits) {
-		if ((endX - startX) * (endY - startY) <= 30 || endX - startX <= 5|| endY - startY <= 5) {
+	private void splitOne(int startX, int endX, int startY, int endY, int splits) {
+		if (splits == 0 || (endX - startX) * (endY - startY) <= 30|| endX - startX <= 5 || endY - startY <= 5) {
 			makeDoors(startX, endX, startY, endY);
 		} else {
+
 			int h = endY - startY;
 			int splitH = (int) ((Math.random() * (h - 4)) + 2);
 			for (int i = startX; i <= endX; i++) {
@@ -26,13 +28,23 @@ public class SplitRoomGenerator extends MapGenerator {
 					map[i][startY+splitH] = '-';
 				}
 			}
-			splitEven(startX, endX, startY, startY+splitH - 1, splits - 1);
-			splitEven(startX, endX, startY+splitH + 1, endY, splits - 1);
+			if(Math.random()<0.5){
+				splitOne(startX, endX, startY, startY+splitH - 1, splits - 1);
+			}
+			else{
+				splitTwo(startX, endX, startY, startY+splitH - 1, splits - 1);
+			}
+			if(Math.random() < 0.5){
+				splitOne(startX, endX, startY+splitH + 1, endY, splits - 1);
+			}
+			else{
+				splitTwo(startX, endX, startY+splitH + 1, endY, splits - 1);
+			}
 
 		}
 	}
 
-	protected void splitEven(int startX, int endX, int startY, int endY, int splits) {
+	private void splitTwo(int startX, int endX, int startY, int endY, int splits) {
 		if (splits == 0 || (endX - startX) * (endY - startY) <= 30|| endX - startX <= 5 || endY - startY <= 5) {
 			makeDoors(startX, endX, startY, endY);
 		} else {
@@ -43,8 +55,18 @@ public class SplitRoomGenerator extends MapGenerator {
 					map[startX+splitW][i] = '-';
 				}
 			}
-			splitOdd(startX, startX+splitW - 1, startY, endY, splits - 1);
-			splitOdd(startX+splitW + 1, endX, startY, endY, splits - 1);
+			if(Math.random()<0.5){
+				splitOne(startX, startX+splitW - 1, startY, endY, splits - 1);
+			}
+			else{
+				splitTwo(startX, startX+splitW - 1, startY, endY, splits - 1);
+			}
+			if(Math.random() < 0.5){
+				splitOne(startX+splitW + 1, endX, startY, endY, splits - 1);
+			}
+			else{
+				splitTwo(startX+splitW + 1, endX, startY, endY, splits - 1);
+			}
 		}
 	}
 	
@@ -67,4 +89,5 @@ public class SplitRoomGenerator extends MapGenerator {
 		}
 		
 	}
+
 }

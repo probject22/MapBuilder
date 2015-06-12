@@ -5,6 +5,7 @@ public class MapGenerator {
 	protected char[][] map;
 	protected int width;
 	protected int height;
+	protected boolean emptyCorner = true;
 	
 	public MapGenerator(int width, int height){
 		this.width = width;
@@ -17,6 +18,9 @@ public class MapGenerator {
 		}
 		generateMap();
 		generateTarget();
+		if(emptyCorner){
+			emptyCorners();
+		}
 		save();
 	}
 
@@ -24,7 +28,7 @@ public class MapGenerator {
 		generateOuterwalls();
 	}
 
-	protected void generateTarget() {
+	private void generateTarget() {
 		boolean target=false;
 		while(!target){
 			int x =(int) (Math.random()*width);
@@ -47,6 +51,55 @@ public class MapGenerator {
 		for(int i = 0; i<height-1;i++){
 			map[0][i] = '+';
 			map[width-1][i] = '+';
+		}
+	}
+	
+	private void emptyCorners(){
+		map[1][1] = ' ';
+		map[2][1] = ' ';
+		map[1][2] = ' ';
+		
+		map[1][height-2] = ' ';
+		map[1][height-3] = ' ';
+		map[2][height-2] = ' ';
+		
+		map[width-2][1] = ' ';
+		map[width-2][2] = ' ';
+		map[width-3][1] = ' ';
+		
+		map[width-2][height-2] = ' ';
+		map[width-3][height-2] = ' ';
+		map[width-2][height-3] = ' ';
+		
+		if(isEven(width)){
+			if(isEven(height)){
+				map[width/2][height/2] = ' ';
+				map[width/2+1][height/2] = ' ';
+				map[width/2][height/2+1] = ' ';
+				map[width/2+1][height/2+1] = ' ';
+			}
+			else{
+				map[width/2][(int)(height/2)+1] = ' ';
+				map[width/2+1][(int)(height/2)+1] = ' ';
+			}
+		}
+		else{
+			if(isEven(height)){
+				map[(int)(width/2)+1][height/2] = ' ';
+				map[(int)(width/2)+1][height/2+1] = ' ';
+			}
+			else{
+				map[(int)(width/2)+1][(int)(height/2)+1] = ' ';
+			}
+		}
+		
+	}
+	
+	protected boolean isEven(int number) {
+		if ((number & 1) == 0) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 	
