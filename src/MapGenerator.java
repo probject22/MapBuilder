@@ -42,7 +42,7 @@ public class MapGenerator {
 		
 	}
 
-	private void generateOuterwalls(){
+	protected void generateOuterwalls(){
 		map[width-1][height-1] = '+';
 		for(int i = 0; i < width-1; i++){
 			map[i][0] = '+';
@@ -100,6 +100,16 @@ public class MapGenerator {
 			return true;
 		} else {
 			return false;
+		}
+	}
+	
+	protected void emptyK() {
+		for(int i = 0; i<width; i++){
+			for(int j = 0; j<height; j++){
+				if(map[i][j] == 'K'){
+					map[i][j] = ' ';
+				}
+			}
 		}
 	}
 	

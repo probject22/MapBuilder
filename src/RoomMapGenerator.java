@@ -23,16 +23,6 @@ public class RoomMapGenerator extends MapGenerator{
 		emptyK();
 	}
 	
-	private void emptyK() {
-		for(int i = 0; i<width; i++){
-			for(int j = 0; j<height; j++){
-				if(map[i][j] == 'K'){
-					map[i][j] = ' ';
-				}
-			}
-		}
-	}
-	
 	private void makeRoom(int startX, int startY, int wallWidth, int wallHeigth){
 		//outerroomwalls width
 		int door1 = (int) (startX + (Math.random()*(wallWidth-2)))+1;
