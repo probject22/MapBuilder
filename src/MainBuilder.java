@@ -11,8 +11,8 @@ public class MainBuilder {
 		//RoomMapGenerator mapGen = new RoomMapGenerator(width, height);
 		//SplitRoomGenerator mapGen = new SplitRoomGenerator(width, height);
 		//RandomSplitRoomGenerator mapGen = new RandomSplitRoomGenerator(width, height);
-		//URoomGenerator mapGen = new URoomGenerator(width, height);
-		StaticURoomGenerator mapGen = new StaticURoomGenerator(width, height);
+		URoomGenerator mapGen = new URoomGenerator(width, height);
+		//StaticURoomGenerator mapGen = new StaticURoomGenerator(width, height);
 		
 	}
 	
