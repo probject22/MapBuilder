@@ -1,10 +1,20 @@
 import java.io.File;
 
-
+/**
+ * creates batches of one type of map
+ * @author Hallmanns
+ *
+ */
 public class BuildMaps {
 
 	String path = "";
 	
+	/**
+	 * creates batches of one type of map
+	 * @param batches: amount of grouped maps
+	 * @param amount: amount of maps per group
+	 * @param size: width and height of maps (square)
+	 */
 	public BuildMaps(int batches, int amount, int size) {
 		for (int batch = 0; batch < batches; batch++) {
 			File dir = new File("batch" + batch);
