@@ -21,7 +21,12 @@ public class MapGenerator {
 		if(emptyCorner){
 			emptyCorners();
 		}
-		save();
+		//for experiments, do not save here!
+		//save();
+	}
+	
+	public char[][] getMap(){
+		return map;
 	}
 
 	protected void generateMap() {
