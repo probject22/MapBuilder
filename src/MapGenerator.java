@@ -22,7 +22,7 @@ public class MapGenerator {
 			emptyCorners();
 		}
 		//for experiments, do not save here!
-		//save();
+		save();
 	}
 	
 	public char[][] getMap(){
