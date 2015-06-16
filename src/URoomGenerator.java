@@ -1,12 +1,28 @@
+/**
+ * Places U s of different rotations and lengths on random spots on map
+ * 
+ * @author Hallmanns
+ *
+ */
 public class URoomGenerator extends MapGenerator {
 
 	private final int us = 100;
 	private final int ulength = 25;
 
+	/**
+	 * constructor
+	 * 
+	 * @param width
+	 * @param height
+	 */
 	public URoomGenerator(int width, int height) {
 		super(width, height);
 	}
 
+	/**
+	 * calculates starting point , rotation and length of U, send it to right
+	 * rotation-method
+	 */
 	protected void generateMap() {
 		super.generateMap();
 		for (int i = 0; i < us; i++) {
@@ -25,7 +41,8 @@ public class URoomGenerator extends MapGenerator {
 			} else {
 				leftU(rx, ry, rl);
 			}
-
+			// Choose either to fill the square with K's or not
+			// use surround to enable S shaped corridors
 			// fullK(rl, rx, ry);
 			surroundK(rl, rx, ry, rr);
 
@@ -33,6 +50,19 @@ public class URoomGenerator extends MapGenerator {
 		emptyK();
 	}
 
+	/**
+	 * surround the U with K's so lines won't touch, but S shaped corridors can
+	 * be created
+	 * 
+	 * @param rl
+	 *            : randomLength of U
+	 * @param rx
+	 *            : randomX startingpoint of U
+	 * @param ry
+	 *            : randomY startingpoint of U
+	 * @param rr
+	 *            : randomRotation of U
+	 */
 	private void surroundK(int rl, int rx, int ry, int rr) {
 
 		// upper
@@ -77,6 +107,16 @@ public class URoomGenerator extends MapGenerator {
 		}
 	}
 
+	/**
+	 * create U with upside open
+	 * 
+	 * @param rx
+	 *            : randomX startingpoint of U
+	 * @param ry
+	 *            : randomY startingpoint of U
+	 * @param rl
+	 *            : randomLength of U
+	 */
 	protected void upU(int rx, int ry, int rl) {
 
 		// REMEMBER: ONE SIDE RL, OTHER SIDES RL-1
@@ -95,6 +135,16 @@ public class URoomGenerator extends MapGenerator {
 		}
 	}
 
+	/**
+	 * create U with rightside open
+	 * 
+	 * @param rx
+	 *            : randomX startingpoint of U
+	 * @param ry
+	 *            : randomY startingpoint of U
+	 * @param rl
+	 *            : randomLength of U
+	 */
 	protected void rightU(int rx, int ry, int rl) {
 
 		// REMEMBER: ONE SIDE RL, OTHER SIDES RL-1
@@ -112,6 +162,16 @@ public class URoomGenerator extends MapGenerator {
 		}
 	}
 
+	/**
+	 * create U with downside open
+	 * 
+	 * @param rx
+	 *            : randomX startingpoint of U
+	 * @param ry
+	 *            : randomY startingpoint of U
+	 * @param rl
+	 *            : randomLength of U
+	 */
 	protected void downU(int rx, int ry, int rl) {
 		// REMEMBER: ONE SIDE RL, OTHER SIDES RL-1
 		map[rx][ry] = '-';
@@ -128,6 +188,16 @@ public class URoomGenerator extends MapGenerator {
 		}
 	}
 
+	/**
+	 * create U with leftside open
+	 * 
+	 * @param rx
+	 *            : randomX startingpoint of U
+	 * @param ry
+	 *            : randomY startingpoint of U
+	 * @param rl
+	 *            : randomLength of U
+	 */
 	protected void leftU(int rx, int ry, int rl) {
 		// REMEMBER: ONE SIDE RL, OTHER SIDES RL-1
 		map[rx][ry] = '-';
@@ -145,6 +215,17 @@ public class URoomGenerator extends MapGenerator {
 		}
 	}
 
+	/**
+	 * fill square around U with K's so lines won't touch, S shaped corridors
+	 * canNOT be created
+	 * 
+	 * @param rl
+	 *            : randomLength of U
+	 * @param rx
+	 *            : randomX startingpoint of U
+	 * @param ry
+	 *            : randomY startingpoint of U
+	 */
 	protected void fullK(int rl, int rx, int ry) {
 		for (int cx = 0; cx <= rl + 2; cx++) {
 			for (int cy = 0; cy <= rl + 2; cy++) {
